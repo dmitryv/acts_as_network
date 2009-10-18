@@ -49,7 +49,7 @@ class Array
   end
 end
 
-class UnionCollectionTest < Test::Unit::TestCase
+class UnionCollectionTest < TEST_CASE
   fixtures :shows, :channels
   
   def setup
@@ -175,7 +175,7 @@ class UnionCollectionTest < Test::Unit::TestCase
   end
 end
 
-class ActsAsUntionTest < Test::Unit::TestCase
+class ActsAsUntionTest < TEST_CASE
   fixtures :shows, :channels
   
   def test_union_method
@@ -184,7 +184,7 @@ class ActsAsUntionTest < Test::Unit::TestCase
   end
 end
 
-class ActsAsNetworkTest < Test::Unit::TestCase
+class ActsAsNetworkTest < TEST_CASE
   fixtures :people, :people_people, :invites
 
   def test_habtm_assignments
