@@ -33,7 +33,9 @@ TEST_CASE = ActiveSupport.const_defined?(:TestCase) ? ActiveSupport::TestCase : 
 FileUtils.rm File.join(RAILS_ROOT, config['sqlite3'][:dbfile]), :force => true
 
 ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
-ActiveRecord::Base.establish_connection(config[ENV['DB'] || 'sqlite3'])
+ActiveRecord::Base.establish_connection(config)
+
+FileUtils.rm_f config[:database]
 
 load(File.join(File.dirname(__FILE__), "schema.rb"))
 
@@ -56,5 +58,4 @@ class TEST_CASE #:nodoc:
   self.use_instantiated_fixtures  = false
   
   # Instantiated fixtures are slow, but give you @david where you otherwise would need people(:david)
-  
 end
