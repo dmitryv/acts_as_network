@@ -243,9 +243,9 @@ module Zetetic #:nodoc:
             through_class = configuration[:through].to_s.classify
             through_sym = configuration[:through]
             # for user not use '#{name.tableize.singularize}[_target]' as source.
-            out_source = "#{name.tableize.singularize}_target"
+            out_source = configuration[:association_foreign_key].gsub(/_id$/, '')
             out_source = configuration[:out_source] if configuration[:out_source]
-            in_source = name.tableize.singularize
+            in_source = configuration[:foreign_key].gsub(/_id$/, '')
             in_source = configuration[:in_source] if configuration[:in_source]
       
             through_options = { :class_name => through_class }
