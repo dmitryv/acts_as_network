@@ -246,14 +246,14 @@ module Zetetic #:nodoc:
             has_many "#{through_sym}_out".to_sym, :class_name => through_class, 
               :foreign_key => configuration[:foreign_key]
             has_many "#{relationship}_out".to_sym, :through => "#{through_sym}_out".to_sym, 
-              :source => "#{name.tableize.singularize}_target",  :foreign_key => configuration[:foreign_key],
+              :source => configuration[:association_foreign_key].gsub(/_id$/, ''),  :foreign_key => configuration[:foreign_key],
               :conditions => configuration[:conditions]
       
             # a node has many inbound relationships
             has_many "#{through_sym}_in".to_sym, :class_name => through_class, 
               :foreign_key => configuration[:association_foreign_key]
             has_many "#{relationship}_in".to_sym, :through => "#{through_sym}_in".to_sym, 
-              :source => name.tableize.singularize, :foreign_key => configuration[:association_foreign_key],
+              :source => configuration[:foreign_key].gsub(/_id$/, ''), :foreign_key => configuration[:association_foreign_key],
               :conditions => configuration[:conditions]
             
             # when using a join model, define a method providing a unioned view of all the join
